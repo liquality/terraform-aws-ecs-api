@@ -10,7 +10,6 @@ variable "api_instance_count" {
 variable "api_image_registry_url" {
   type        = string
   description = "The full registry path to the Docker image including the image name."
-  default     = "ghcr.io/liquality/ethereum-indexer-api"
 }
 
 # ------------------------------------------------------------------------------
@@ -57,3 +56,10 @@ variable "api_environment_vars" {
   description = "A list of environment variables to pass to the running container."
   default     = []
 }
+
+variable "health_check_path" {
+  type        = string
+  description = "Health check path for the api"
+  default     = []
+}
+

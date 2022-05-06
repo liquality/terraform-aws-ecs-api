@@ -22,8 +22,8 @@ Terraform module for Liquality's blockchain indexer services (AWS ECS).
 Example of an RSK testnet configuration:
 
 ```
-module "indexer-rsk-testnet" {
-  source = "github.com/liquality/terraform-aws-ecs-ethereum-indexer.git?ref=tags/v0.0.5"
+module "api_name" {
+  source = "github.com/liquality/terraform-aws-ecs-api.git?ref=dev"
 
   # The target environment
   env_alias  = "chainhub"
@@ -33,34 +33,20 @@ module "indexer-rsk-testnet" {
   route53_zone_name          = "api.liq-chainhub.net"
   route53_record_name_prefix = "dev-"
 
-  # Chain settings
-  chain_network_name     = "rsk-testnet"
-  chain_network_endpoint = "https://public-node.testnet.rsk.co"
-
-  # Database settings
-  mongo_db_name     = "indexerRskTestnet"
-  mongo_db_host     = var.mongo_db_host     # loaded from secret
-  mongo_db_user     = var.mongo_db_user     # loaded from secret
-  mongo_db_password = var.mongo_db_password # loaded from secret
-
   # API settings
   api_image_version          = "latest"
   api_environment_vars       = []
   api_container_memory_alloc = 512
   api_container_cpu_alloc    = 256
   api_instance_count         = 2
-
-  # Worker settings
-  worker_image_version = "latest"
-  worker_environment_vars = [
+  api_image_registry_url     = "ghcr.io/liquality/liquality-near-contract-helper"
+  api_environment_vars = [
     { name = "START_BLOCK", value = 1397234 },
     { name = "MAX_BLOCK_BATCH_SIZE", value = 10 },
     { name = "MAX_TRANSACTION_BATCH_SIZE", value = 15 },
     { name = "REORG_GAP", value = 3 },
     { name = "BLOCKTIME", value = 1000 }
   ]
-  worker_container_memory_alloc = 1024
-  worker_container_cpu_alloc    = 512
 }
 ```
 

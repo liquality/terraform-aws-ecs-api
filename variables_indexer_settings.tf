@@ -1,12 +1,8 @@
 # ------------------------------------------------------------------------------
-# Chain settings
+# API settings
 # ------------------------------------------------------------------------------
-variable "chain_network_name" {
+variable "api_name" {
   type        = string
-  description = "A logical name for the chain network (e.g eth-ropsten, eth-rinkeby, rsk-mainnet)."
+  description = "A logical name for the api"
 }
 
-variable "chain_network_endpoint" {
-  type        = string
-  description = "The web3 uri for the blockchain network."
-}

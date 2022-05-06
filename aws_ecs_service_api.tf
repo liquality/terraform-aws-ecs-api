@@ -97,7 +97,7 @@ resource "aws_lb_target_group" "api" {
     interval            = 30 # seconds
     timeout             = 10 # seconds
     matcher             = "200"
-    path                = var.status_path
+    path                = var.health_check_path
     port                = var.api_container_port
   }
 

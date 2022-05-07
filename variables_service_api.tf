@@ -57,7 +57,7 @@ variable "api_environment_vars" {
   default     = []
 }
 
-variable "health_check_path" {
+variable "api_health_check_path" {
   type        = string
   description = "Health check path for the api"
 }
